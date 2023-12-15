@@ -8,12 +8,11 @@ string encryptCaesarCipher(const string& password, int shift) {
         if (isalpha(ch)) {
             char base = isupper(ch) ? 'A' : 'a';
             char encryptedChar = ((ch - base + shift) % 26 + 26) % 26 + base;
-            encryptedPassword.push_back(encryptedChar);
+            encryptedPassword+=encryptedChar;
         } else {
-            encryptedPassword.push_back(ch);
+            encryptedPassword+=ch;
         }
     }
-
     return encryptedPassword;
 }
 string decryptCaesarCipher(const string password, int shift) {
