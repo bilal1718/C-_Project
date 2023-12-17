@@ -145,25 +145,66 @@ int rsa(int numbers,int encryptedMessage,int decryptedMessage,int choice){
         return decryptedMessage;
     }   
 }
+// bool isdigit(char c){
+//     return c>='0' && c<='9';
+
+// }
+// void extractednumbers(string& password){
+//       int currentNumber = 0;
+//     bool inNumber = false;
+
+//     for (char c : password) {
+//         if (isdigit(c)) {
+//             currentNumber = currentNumber * 10 + (c - '0');
+//             inNumber = true;
+//          } else {
+//             if (inNumber) {
+//                 cout << "Number extracted: " << currentNumber << endl;
+//                 currentNumber = 0;
+//                 inNumber = false;
+//             }
+//         }
+//     }
+//     if (inNumber) {
+//         cout << "Number extracted: " << currentNumber <<endl;
+       
+//     }
+            
+//  }
 int main() {
-    int choice;
+    int choice,message=0;
+    string in_valid;
     string encryptedPassword;
     int encryptedMessage;
     int decryptedMessage;
     string password;
     string characters;
     string numbers;
+    int count=0;
     cout << "Enter your password: ";
     cin>>password;
     for(char ch:password){
         if(isalpha(ch)){
             characters +=ch;
         
-        }else{
-            numbers+=ch;  
+        }else if(isdigit(ch)){
+            numbers +=ch;
         }
+        else{
+            in_valid += ch;
+            count++;
+        }  
+       
     }
-    int message=stoi(numbers);
+    if(count>1){
+    cout << in_valid<<" are invalid characters" << endl;}
+    else if(count==1){
+       cout<< in_valid<<" is invalid characters" << endl;
+    }
+    if(!numbers.empty()){
+         message=stoi(numbers);
+    }
+    
     cipher(characters,encryptedPassword,choice);
     // cout << rsa(message,encryptedMessage,decryptedMessage,choice);
     cout << rsa(message,encryptedMessage,decryptedMessage,choice);    
